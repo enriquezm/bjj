@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    title: `That Guy That Rolls`,
+    author: `Myles Enriquez`,
+    description: `I'm studying jiu jitsu and writing about it.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      instagram: `rubberontherocks`
     },
   },
   plugins: [
@@ -73,6 +73,14 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `heebo\:300,400,700`,
+        ]
+      }
     },
   ],
 }
