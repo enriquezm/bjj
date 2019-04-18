@@ -2,7 +2,7 @@
 title: Breakdown - Closed Guard Arm Bar
 date: "2019-04-18T22:12:03.284Z"
 description: ""
-featuredImage: "./placeholder.jpg"
+featuredImage: "./featured-image.jpg"
 ---
 
 When going for right arm (just mirror for other arm)

@@ -2,7 +2,7 @@
 title: Sup everyone, I got my white belt
 date: "2019-04-17T22:12:03.284Z"
 description: ""
-featuredImage: "./placeholder.jpg"
+featuredImage: "./featured-image.jpg"
 ---
 
 My name is Myles, and I'm studying Jiu Jitsu. I've been doing it for almost 2 months so far and love it. Let me rephrase that, I'm _obsessed_ with it.

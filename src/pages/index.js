@@ -97,7 +97,6 @@ class BlogIndex extends React.Component {
           title="Home"
           keywords={[`blog`, `bjj`, `jiu jitsu`]}
         />
-        <Bio />
         <PostsContainer>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
@@ -124,6 +123,7 @@ class BlogIndex extends React.Component {
             )
           })}
         </PostsContainer>
+        <Bio />
       </Layout>
     )
   }
