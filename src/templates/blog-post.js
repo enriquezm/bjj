@@ -2,9 +2,32 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
+import Image from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import styled from "styled-components"
+
+const Date = styled.p`
+  color: #a0a0a0;
+  font-size: 14px;
+`
+const Content = styled.div`
+  font-weight: 300;
+  line-height: 30px;
+  font-size: 16px;
+  color: #646464;
+`
+
+const LineBreak = styled.hr`
+  margin: 50px 0;
+  border: 1px solid #efefef;
+`
+
+const ReadOnSection = styled.ul`
+  margin-bottom: 75px;
+`
+
+
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -18,26 +41,16 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
+        <Image sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
         <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
+        <Date>
           {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        </Date>
+        <Content dangerouslySetInnerHTML={{ __html: post.html }} />
+        <LineBreak/>
         <Bio />
 
-        <ul
+        <ReadOnSection
           style={{
             display: `flex`,
             flexWrap: `wrap`,
@@ -60,7 +73,7 @@ class BlogPostTemplate extends React.Component {
               </Link>
             )}
           </li>
-        </ul>
+        </ReadOnSection>
       </Layout>
     )
   }
@@ -84,6 +97,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        featuredImage {
+          childImageSharp {
+            sizes(maxWidth: 2000) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
     }
   }

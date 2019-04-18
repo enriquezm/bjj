@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
+import Image from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled from "styled-components"
@@ -12,22 +13,37 @@ const PostsContainer = styled.main`
   justify-content: space-between;
 `
 const Post = styled.div`
-  width: 33%;
-  padding: 5px
+  width: 30%;
+  padding: 5px;
   margin-bottom: 50px;
   h3 {
     margin-bottom: 10px;
   }
   @media (max-width: 960px) {
-    width: 50%;
+    width: 45%;
   }
   @media (max-width: 600px) {
     width: 100%;
   }
 `
+
+const ImageContainer = styled.div`
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s;
+    transform: scale3d(1, 1, 1);
+    &:hover {
+      transform: scale3d(1.2, 1.2, 1.2);
+      transition: all 0.3s;
+    }
+  }
+`
+
 const Title = styled.h3`
   font-size: 20px;
-  margin: 5px 0;
+  margin: 25px 0 5px 0;
   a {
     color: #141414;
     text-decoration: none;
@@ -46,9 +62,11 @@ const Date = styled.p`
 `
 
 const Description = styled.p`
-  margin: 5px 0;
+  margin: 5px 0 10px 0;
   font-size: 16px;
   line-height: 30px;
+  color: #646464;
+  font-weight: 300;
 `
 
 const TextButton = styled(Link)`
@@ -57,12 +75,12 @@ const TextButton = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
   padding: 5px 0;
-  border-bottom: 1px solid #a0a0a0;
-  color: #a0a0a0;
+  border-bottom: 1px solid #7C26CB;
+  color: #7C26CB;
   transition: 0.2s all;
   &:hover {
-    color: black;
-    border-bottom: 1px solid black;
+    color: #cb26c8;
+    border-bottom: 1px solid #cb26c8;
     transition: 0.3s all;
   }
 `
@@ -76,8 +94,8 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          title="Home"
+          keywords={[`blog`, `bjj`, `jiu jitsu`]}
         />
         <Bio />
         <PostsContainer>
@@ -85,6 +103,11 @@ class BlogIndex extends React.Component {
             const title = node.frontmatter.title || node.fields.slug
             return (
               <Post key={node.fields.slug}>
+                <ImageContainer>
+                  <Link to={node.fields.slug}>
+                    <Image sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
+                  </Link>
+                </ImageContainer>
                 <Title>
                   <Link to={node.fields.slug}>
                     {title}
@@ -126,6 +149,13 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            featuredImage {
+              childImageSharp {
+                sizes(maxWidth: 768) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }

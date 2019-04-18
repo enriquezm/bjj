@@ -5,11 +5,20 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
+ /* eslint-disable */
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import styled from "styled-components"
 
-import { rhythm } from "../utils/typography"
+const Container = styled.div`
+  margin-bottom: 50px;
+  padding: 5px;
+`
+
+const P = styled.p`
+  font-weight: 300;
+`
 
 function Bio() {
   return (
@@ -18,17 +27,15 @@ function Bio() {
       render={data => {
         const { author, social } = data.site.siteMetadata
         return (
-          <div
+          <Container
             style={{
               display: `flex`,
-              marginBottom: rhythm(2.5),
             }}
           >
             {/* <Image
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
               style={{
-                marginRight: rhythm(1 / 2),
                 marginBottom: 0,
                 minWidth: 50,
                 borderRadius: `100%`,
@@ -37,14 +44,10 @@ function Bio() {
                 borderRadius: `50%`,
               }}
             /> */}
-            <p>
+            <P>
               Written by <strong>{author}</strong> who lives and trains in Las Vegas. Read along or go about your day, either way he doesn't care.
-              {` `}
-              <a href={`https://instagram.com/${social.instagram}`}>
-                You should follow him on Instagram.
-              </a>
-            </p>
-          </div>
+            </P>
+          </Container>
         )
       }}
     />
@@ -55,7 +58,7 @@ const bioQuery = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
       childImageSharp {
-        fixed(width: 50, height: 50) {
+        fixed(width: 100, height: 100) {
           ...GatsbyImageSharpFixed
         }
       }
