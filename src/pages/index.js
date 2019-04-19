@@ -5,7 +5,12 @@ import Bio from "../components/bio"
 import Image from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import BeltRank from "../components/BeltRank"
 import styled from "styled-components"
+
+const white = "#f4f4f4"
+const blue = "#5454f6"
+const purple = "purple"
 
 const PostsContainer = styled.main`
   display: flex;
@@ -13,17 +18,11 @@ const PostsContainer = styled.main`
   justify-content: space-between;
 `
 const Post = styled.div`
-  width: 30%;
+  width: 100%;
   padding: 5px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   h3 {
     margin-bottom: 10px;
-  }
-  @media (max-width: 960px) {
-    width: 45%;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
   }
 `
 
@@ -54,11 +53,18 @@ const Title = styled.h3`
     }
   }
 `
-
+const MetaData = styled.div`
+  display: flex;
+  align-items: center;
+`
 const Date = styled.p`
   color: #a0a0a0;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-right: 10px;
+  &:after {
+    content: '|';
+    margin-left: 10px;
+  }
 `
 
 const Description = styled.p`
@@ -102,17 +108,20 @@ class BlogIndex extends React.Component {
             const title = node.frontmatter.title || node.fields.slug
             return (
               <Post key={node.fields.slug}>
-                <ImageContainer>
+                {/* <ImageContainer>
                   <Link to={node.fields.slug}>
                     <Image sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
                   </Link>
-                </ImageContainer>
+                </ImageContainer> */}
                 <Title>
                   <Link to={node.fields.slug}>
                     {title}
                   </Link>
                 </Title>
-                <Date>{node.frontmatter.date}</Date>
+                <MetaData>
+                  <Date>{node.frontmatter.date}</Date>
+                  <BeltRank title="Written at this belt rank." color={node.frontmatter.color} stripes={node.frontmatter.stripes} />
+                </MetaData>
                 <Description
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,
@@ -149,6 +158,8 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            color
+            stripes
             featuredImage {
               childImageSharp {
                 sizes(maxWidth: 768) {

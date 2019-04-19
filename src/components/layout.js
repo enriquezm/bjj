@@ -52,7 +52,7 @@ class Layout extends React.Component {
           style={{
             marginLeft: `auto`,
             marginRight: `auto`,
-            maxWidth: 960,
+            maxWidth: 768,
           }}
         >
           <header>

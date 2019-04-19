@@ -16,6 +16,9 @@ const Content = styled.div`
   line-height: 30px;
   font-size: 16px;
   color: #646464;
+  @media (max-with: 960px) {
+    padding: 0 20px;
+  }
 `
 
 const LineBreak = styled.hr`
@@ -41,7 +44,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <Image sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
+        {/* <Image sizes={post.frontmatter.featuredImage.childImageSharp.sizes} /> */}
         <h1>{post.frontmatter.title}</h1>
         <Date>
           {post.frontmatter.date}

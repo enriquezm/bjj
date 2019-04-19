@@ -2,6 +2,8 @@
 title: Breakdown - Closed Guard Arm Bar
 date: "2019-04-18T22:12:03.284Z"
 description: ""
+color: "white"
+stripes: 0
 featuredImage: "./featured-image.jpg"
 ---
 

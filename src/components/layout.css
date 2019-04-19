@@ -41,3 +41,9 @@ footer a {
 footer a:hover {
   color: #cb26c8;
 }
+
+@media (max-width: 960px) {
+  header {
+    padding: 20px;
+  }
+}

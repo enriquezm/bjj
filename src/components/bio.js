@@ -12,12 +12,12 @@ import Image from "gatsby-image"
 import styled from "styled-components"
 
 const Container = styled.div`
-  margin-bottom: 50px;
-  padding: 5px;
+  padding: 50px 5px;
 `
 
 const P = styled.p`
   font-weight: 300;
+  color: #646464;
 `
 
 function Bio() {
@@ -37,8 +37,9 @@ function Bio() {
               alt={author}
               style={{
                 marginBottom: 0,
+                marginRight: 20,
                 minWidth: 50,
-                borderRadius: `100%`,
+                borderRadius: `100%`
               }}
               imgStyle={{
                 borderRadius: `50%`,
